@@ -9,8 +9,7 @@ const pool = new Pool({
 });
 
 // Connection check
-pool.connect()
-  .then(() => {
+pool.connect().then(() => {
     console.log("Connected to the PostgreSQL database");
   })
   .catch((err) => {

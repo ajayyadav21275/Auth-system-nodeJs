@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router(); 
 
-const { registerUser, loginUser, getUserProfile } = require('../controllers/UserController');
+const { registerUser, loginUser, getUserProfile, refreshTokenHandler, logoutUser } = require('../controllers/UserController');
 const { authenticateToken } = require('../middleware/authMiddleware');
 
-// Public routes
+
+
 router.post('/register', registerUser);
 router.post('/login', loginUser);
+router.post('/refresh-token', refreshTokenHandler);
 
-// Protected route - JWT token required
+// Protect route 
 router.get('/profile', authenticateToken, getUserProfile);
+router.post('/logout', authenticateToken, logoutUser);
 
 module.exports = router;  
